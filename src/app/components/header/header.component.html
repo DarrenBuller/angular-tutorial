@@ -6,3 +6,5 @@
 <p><button [disabled]=isButtonDisabled>Disabled Using Property Binding</button></p>
 <p><button [class.active]="!isButtonActive" [class.not-active]="isButtonActive">Click Me class styled</button></p>
 <p><button [class.active]="isButtonActive" [class.not-active]="!isButtonActive">Click Me again again class styled</button></p>
+<!-- style Binding -->
+<p><button [style.background]="isButtonActive? 'red' : 'green'" [style.border]="isButtonActive? '3px solid yellow' : '3px solid black'">Click</button></p>
