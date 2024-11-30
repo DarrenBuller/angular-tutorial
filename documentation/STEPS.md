@@ -64,3 +64,31 @@ export class AppComponent {
 ```
 
 ## commit
+
+# Add Tailwind
+See [Install Tailwind CSS with Angular](https://tailwindcss.com/docs/guides/angular)
+## Install Tailwind CSS
+```
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+```
+## Configure your template paths
+Add the paths to all of your template files in your tailwind.config.js file.
+```
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{html,ts}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+## Add the @tailwind directives for each of Tailwind’s layers to your ./src/styles.css file.
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```

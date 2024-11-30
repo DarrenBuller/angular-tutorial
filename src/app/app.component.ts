@@ -8,6 +8,7 @@ import { NavbarComponent } from "@components/navbar/navbar/navbar.component";
   template: `
     <app-navbar/>
     <h1>Hello, {{title}}!</h1>
+    <h2 class="text-5xl font-bold underline">Tailwind works!</h2>
 
     <router-outlet />
   `,
