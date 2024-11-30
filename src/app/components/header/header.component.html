@@ -1,0 +1,8 @@
+<p>
+    header works! {{title}}
+</p>
+<img src="{{imageUrl}}" />
+<p><button disabled="{{buttonDisable}}">Disabled Using String Interpolation</button></p>
+<p><button [disabled]=isButtonDisabled>Disabled Using Property Binding</button></p>
+<p><button [class.active]="!isButtonActive" [class.not-active]="isButtonActive">Click Me class styled</button></p>
+<p><button [class.active]="isButtonActive" [class.not-active]="!isButtonActive">Click Me again again class styled</button></p>
