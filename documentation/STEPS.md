@@ -29,7 +29,7 @@ npm run test
 
 # Add a components
 ```
-ng generate component components/navbar/navbar --inline-template
+ng generate component components/navbar --inline-template
 ```
 Add component to app component
 
