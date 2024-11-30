@@ -8,3 +8,19 @@
 <p><button [class.active]="isButtonActive" [class.not-active]="!isButtonActive">Click Me again again class styled</button></p>
 <!-- style Binding -->
 <p><button [style.background]="isButtonActive? 'red' : 'green'" [style.border]="isButtonActive? '3px solid yellow' : '3px solid black'">Click</button></p>
+<!--Event Binding -->
+<p><button (click)="buttonClick()">Click event</button></p>
+<p><label>keyUp</label><input type="text" (keyup)="keyEnter($event)"/></p>
+<p><label>keyUp.enter</label><input type="text" (keyup.enter)="keyUpFiltering()"/></p>
+<p><label>keyUserFiltering</label><input type="text" (keyup.enter)="keyUserFiltering(user)" #user id="userInput"/></p>
+<!--Two-way binding-->
+<p><label>Two Way bad</label><input type="text" [value]="userName" #username (keyup.enter)="updateUserName(username)"/></p>
+
+<p><label>Two Way good</label><input type="text" [(ngModel)]="userName" /></p>
+<h4>{{userName}}</h4>
+
+<!--One way data binding -->
+<p><label>one way</label><input type="text" [value]="textValue"/></p>
+<h4>{{textValue}}</h4>
+
+
