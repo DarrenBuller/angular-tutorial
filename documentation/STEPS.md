@@ -92,3 +92,8 @@ module.exports = {
 @tailwind components;
 @tailwind utilities;
 ```
+
+# Add header
+```
+ng generate component components/header --inline-template
+```
