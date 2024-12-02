@@ -114,8 +114,18 @@ import { FormsModule } from '@angular/forms';
     </ul>
 
     <ul>
-      <li *ngFor="let user of usersObj; let i = index">li {{i}} {{user.name}} {{user.email}}   <button (click)="onDelete(i)">onDelete</button></li>
+      <li *ngFor="let user of usersObj; let i = index; let userCount = count">li {{userCount}} {{i}} {{user.name}} {{user.email}}   <button (click)="onDelete(i)">onDelete</button></li>
     </ul>
+
+    <ul>
+    @for (user of usersObj; track user; let i = $index; let userCount = $count) {
+      <li>{{userCount}} {{i}} for li {{user.name}} {{user.email}} <button (click)="onDelete(i)">onDelete</button></li>
+    }
+    </ul>
+    <h1>Number of users: {{usersObj.length}}</h1>
+    <div *ngIf="usersObj.length==0">
+      <p>UserObj is empty</p>
+  </div>
     `})
 export class NavbarComponent {
 
@@ -134,6 +144,11 @@ export class NavbarComponent {
     {id: 3, name: 'sam', email: 'sam@email.com'},
     {id: 4, name: 'kate', email: 'kate@email.com'},
   ]
+
+  constructor(){
+    console.log(this.usersObj.length);
+  }
+
   onLoginClick() {
     this.loginAttempts++;
   }
