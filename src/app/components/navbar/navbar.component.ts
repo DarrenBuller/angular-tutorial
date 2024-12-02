@@ -1,11 +1,17 @@
-import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, NgTemplateOutlet } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NgIf, FormsModule, NgTemplateOutlet, NgFor],
+  imports: [NgIf,
+    FormsModule,
+    NgTemplateOutlet,
+    NgFor,
+    NgSwitch,
+    NgSwitchCase,
+    NgSwitchDefault],
   template: `
     <p>-----------------------Angular Directives -inline template (NavbarComponent)--------------------------------------</p>
     <p>
@@ -58,6 +64,12 @@ import { FormsModule } from '@angular/forms';
     @else {
       <h4>else string Welcome Member</h4>
     }
+
+    <div [ngSwitch]="userRole">
+      <div *ngSwitchCase="'Admin'">Switch Admin User</div>
+      <div *ngSwitchCase="'Member'">Switch Member User</div>
+      <div *ngSwitchDefault>Guest</div>
+    </div>
 
     <!-- template reuse -->
     <p>This is a normal element</p>
@@ -121,11 +133,17 @@ import { FormsModule } from '@angular/forms';
     @for (user of usersObj; track user; let i = $index; let userCount = $count) {
       <li>{{userCount}} {{i}} for li {{user.name}} {{user.email}} <button (click)="onDelete(i)">onDelete</button></li>
     }
+    @empty {
+      <p>atEmpty UserObj is empty</p>
+    }
     </ul>
     <h1>Number of users: {{usersObj.length}}</h1>
     <div *ngIf="usersObj.length==0">
       <p>UserObj is empty</p>
   </div>
+  @if (usersObj.length==0) {
+    <p>atif UserObj is empty</p>
+  }
     `})
 export class NavbarComponent {
 
@@ -139,13 +157,13 @@ export class NavbarComponent {
   userRole: string = 'Admin'
   users: Array<string> = ['Fred', 'Bill', 'Kate'];
   usersObj: Array<any> = [
-    {id: 1, name: 'john', email: 'john@email.com'},
-    {id: 2, name: 'Raj', email: 'Raj@email.com'},
-    {id: 3, name: 'sam', email: 'sam@email.com'},
-    {id: 4, name: 'kate', email: 'kate@email.com'},
+    { id: 1, name: 'john', email: 'john@email.com' },
+    { id: 2, name: 'Raj', email: 'Raj@email.com' },
+    { id: 3, name: 'sam', email: 'sam@email.com' },
+    { id: 4, name: 'kate', email: 'kate@email.com' },
   ]
 
-  constructor(){
+  constructor() {
     console.log(this.usersObj.length);
   }
 
@@ -153,7 +171,7 @@ export class NavbarComponent {
     this.loginAttempts++;
   }
   addNewUser() {
-    let user: any = {id: 5, name: 'kate5', email: 'kate5@email.com'}
+    let user: any = { id: 5, name: 'kate5', email: 'kate5@email.com' }
     this.usersObj.push(user);
   }
   removeUser(user: object) {
