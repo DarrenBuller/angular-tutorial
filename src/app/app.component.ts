@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { PostsListComponent } from "./components/posts-list/posts-list.component";
 import { CardComponent } from "./components/card/card.component";
 import { NgComponentOutlet } from '@angular/common';
+import { ProfileComponent } from "./components/profile/profile.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule, PostsListComponent, CardComponent, NgComponentOutlet],
+  imports: [RouterOutlet, FormsModule, PostsListComponent, CardComponent, NgComponentOutlet, ProfileComponent],
   template: `
     <!--
     <app-header/>
@@ -35,11 +36,17 @@ import { NgComponentOutlet } from '@angular/common';
     <h1>-----button click remove component-----</h1>
     <button (click)="buttonRemoveComponent()">remove component</button>
 
+    <h1>-----app-profile-----</h1>
+    <app-profile [profileUserName]="userName"></app-profile>
+
+    <button (click)="changeUserName()">Change User Name</button>
+
     <router-outlet />
   `,
   styleUrl: './app.component.css'
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements AfterViewInit {
+
   title = 'angular-tutorial';
   postListTitle: string = 'Some title fffffff';
   appIsLoggedIn: boolean = true;
@@ -47,8 +54,9 @@ export class AppComponent implements AfterViewInit{
   message: string = '';
   messageFromChildEvent: string = '';
   anotherMessage: string = '';
+  userName: string = 'Fred Smith';
 
-  constructor(private viewContainer: ViewContainerRef){
+  constructor(private viewContainer: ViewContainerRef) {
     console.log('constructor childMessage: ' + this.postList);
   }
   ngAfterViewInit(): void {
@@ -73,4 +81,7 @@ export class AppComponent implements AfterViewInit{
     this.viewContainer.remove();
   }
 
+  changeUserName() {
+    this.userName = 'Bill Bloggs';
+  }
 }
