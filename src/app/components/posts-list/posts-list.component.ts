@@ -18,6 +18,7 @@ export class PostsListComponent {
   @Input() isLoggedIn: boolean = false;
   @Output() messageEvent = new EventEmitter();
   childMessage: string = 'a message from child component';
+  anotherChildMessage: string = 'another message from child component';
   parentMessage: string = 'Button clicked message for parent';
 
   sendMessageToParent() {

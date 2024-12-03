@@ -13,7 +13,7 @@ import { PostsListComponent } from "./components/posts-list/posts-list.component
     -->
     <h1>-----{{postListTitle}}-----</h1>
     <app-posts-list (messageEvent)="receiveButtonMessage($event)" [postTitle]="postListTitle" [isLoggedIn]="appIsLoggedIn"/>
-    <h2>Child message after view init: {{message}}</h2>
+    <h2>Child message after view init: [{{message}}] [{{anotherMessage}}</h2>
     <h2>Child message from event: {{messageFromChildEvent}}</h2>
     <!--
     <h1>Hello, {{title}}!</h1>
@@ -29,16 +29,18 @@ export class AppComponent implements AfterViewInit{
   title = 'angular-tutorial';
   postListTitle: string = 'Some title fffffff';
   appIsLoggedIn: boolean = true;
-  @ViewChild(PostsListComponent) childMessage: any;
+  @ViewChild(PostsListComponent) postList: any;
   message: string = '';
   messageFromChildEvent: string = '';
+  anotherMessage: string = '';
 
   constructor(){
-    console.log('constructor childMessage: ' + this.childMessage);
+    console.log('constructor childMessage: ' + this.postList);
   }
   ngAfterViewInit(): void {
-    console.log(this.childMessage);
-    this.message = this.childMessage.childMessage;
+    console.log(this.postList);
+    this.message = this.postList.childMessage;
+    this.anotherMessage = this.postList.anotherChildMessage;
   }
   receiveButtonMessage(message: any) {
     console.log(message);
