@@ -27,7 +27,8 @@
 
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"Angular.ng-template",
+				// "Angular.ng-template", // Inluded in "loiane.angular-extension-pack"
+				"loiane.angular-extension-pack",
 				"dbaeumer.vscode-eslint",
 				"lucono.karma-test-explorer",
 				"johnpapa.angular2",
