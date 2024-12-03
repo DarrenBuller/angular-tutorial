@@ -2,10 +2,11 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PostsListComponent } from "./components/posts-list/posts-list.component";
+import { CardComponent } from "./components/card/card.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule, PostsListComponent],
+  imports: [RouterOutlet, FormsModule, PostsListComponent, CardComponent],
   template: `
     <!--
     <app-header/>
@@ -13,8 +14,12 @@ import { PostsListComponent } from "./components/posts-list/posts-list.component
     -->
     <h1>-----{{postListTitle}}-----</h1>
     <app-posts-list (messageEvent)="receiveButtonMessage($event)" [postTitle]="postListTitle" [isLoggedIn]="appIsLoggedIn"/>
-    <h2>Child message after view init: [{{message}}] [{{anotherMessage}}</h2>
+    <h2>Child message after view init: [{{message}}] [{{anotherMessage}}]</h2>
     <h2>Child message from event: {{messageFromChildEvent}}</h2>
+    <app-card>
+      <span forename>Joe</span>
+      <span surname>Smith</span>
+    </app-card>
     <!--
     <h1>Hello, {{title}}!</h1>
     <h2 class="text-5xl font-bold underline">Tailwind works!</h2>
