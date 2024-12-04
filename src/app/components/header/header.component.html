@@ -15,7 +15,8 @@
 <p><label>keyUp.enter</label><input type="text" (keyup.enter)="keyUpFiltering()"/></p>
 <p><label>keyUserFiltering</label><input type="text" (keyup.enter)="keyUserFiltering(user)" #user id="userInput"/></p>
 <!--Two-way binding-->
-<p><label>Two Way bad</label><input type="text" [value]="userName" #username (keyup.enter)="updateUserName(username)"/></p>
+<p><label>Two Way bad </label><input type="text" [value]="userName" #username
+    (keyup.enter)="updateUserName(username)" /></p>
 
 <p><label>Two Way good</label><input type="text" [(ngModel)]="userName" /></p>
 <h4>{{userName}}</h4>

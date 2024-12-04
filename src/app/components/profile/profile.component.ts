@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -13,8 +13,12 @@ import { FormsModule } from '@angular/forms';
   `,
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnChanges, OnInit {
+export class ProfileComponent implements OnChanges, OnInit, DoCheck {
   @Input() profileUserName: string = '';
+
+  constructor() {
+    console.log('constructor triggered. profileUserName: ' + this.profileUserName);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('On changes triggered');
@@ -24,7 +28,12 @@ export class ProfileComponent implements OnChanges, OnInit {
   ngOnInit() {
     // Called on initialisation of the component
     // Good place to call remote service API
-    console.log('On init triggered');
+    console.log('On init triggered. profileUserName: ' + this.profileUserName);
+  }
 
+  ngDoCheck() {
+    // custom change detection
+    // will be called on all changes
+    console.log('ngDoCheck. profileUserName: ' + this.profileUserName);
   }
 }
