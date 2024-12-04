@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,15 @@ import { FormsModule } from '@angular/forms';
   `,
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnChanges, OnInit, DoCheck, AfterContentInit {
+export class ProfileComponent implements
+  OnChanges,
+  OnInit,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy {
 
   @Input() profileUserName: string = '';
   counter: number = 0;
@@ -22,6 +30,7 @@ export class ProfileComponent implements OnChanges, OnInit, DoCheck, AfterConten
   constructor() {
     console.log('constructor triggered. profileUserName: ' + this.profileUserName);
   }
+
 
   ngOnChanges(changes: SimpleChanges): void {
     // will be called on all changes to @Input vars
@@ -42,10 +51,27 @@ export class ProfileComponent implements OnChanges, OnInit, DoCheck, AfterConten
   }
   incrementCounter() {
     this.counter++;
+    console.log('incrementCounter');
   }
 
   ngAfterContentInit() {
     // works with ngContent after the context is initialized
     console.log('ngAfterContentInit. profileUserName: ' + this.profileUserName);
+  }
+  ngAfterContentChecked(): void {
+    console.log('ngAfterContentChecked. profileUserName: ' + this.profileUserName);
+  }
+  ngAfterViewInit(): void {
+    // after view is fully rendered
+    // could set the initial input field here (only valid after the view is initialised)
+    console.log('ngAfterViewInit. profileUserName: ' + this.profileUserName);
+  }
+  ngAfterViewChecked(): void {
+    // every time the view changes
+    console.log('ngAfterViewChecked. profileUserName: ' + this.profileUserName);
+  }
+
+  ngOnDestroy(): void {
+    console.log('ngAfterViewChecked. profileUserName: ' + this.profileUserName);
   }
 }
