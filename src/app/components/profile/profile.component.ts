@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   `,
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnChanges {
+export class ProfileComponent implements OnChanges, OnInit {
   @Input() profileUserName: string = '';
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -21,4 +21,10 @@ export class ProfileComponent implements OnChanges {
     console.log(changes);
   }
 
+  ngOnInit() {
+    // Called on initialisation of the component
+    // Good place to call remote service API
+    console.log('On init triggered');
+
+  }
 }
