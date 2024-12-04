@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentInit, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,20 +8,24 @@ import { FormsModule } from '@angular/forms';
     <p>
       profile works!
     </p>
-    <p><label>User Name: </label><input type="text" [(ngModel)]="profileUserName" /></p>
+    <p><label>AppProfile User Name: </label><input type="text" [(ngModel)]="profileUserName" /></p>
     <p>{{profileUserName}}</p>
+    <button (click)="incrementCounter()">Increment Counter</button>
   `,
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnChanges, OnInit, DoCheck {
+export class ProfileComponent implements OnChanges, OnInit, DoCheck, AfterContentInit {
+
   @Input() profileUserName: string = '';
+  counter: number = 0;
 
   constructor() {
     console.log('constructor triggered. profileUserName: ' + this.profileUserName);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('On changes triggered');
+    // will be called on all changes to @Input vars
+    console.log('ngOnChanges changes triggered');
     console.log(changes);
   }
 
@@ -33,7 +37,15 @@ export class ProfileComponent implements OnChanges, OnInit, DoCheck {
 
   ngDoCheck() {
     // custom change detection
-    // will be called on all changes
+    // will be called on all changes to variable
     console.log('ngDoCheck. profileUserName: ' + this.profileUserName);
+  }
+  incrementCounter() {
+    this.counter++;
+  }
+
+  ngAfterContentInit() {
+    // works with ngContent after the context is initialized
+    console.log('ngAfterContentInit. profileUserName: ' + this.profileUserName);
   }
 }

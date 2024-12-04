@@ -38,6 +38,7 @@ import { ProfileComponent } from "./components/profile/profile.component";
 
     <h1>-----app-profile-----</h1>
     <app-profile [profileUserName]="userName"></app-profile>
+    <p><label>AppComponent User Name: </label><input type="text" [(ngModel)]="userName" /></p>
 
     <button (click)="changeUserName()">Change User Name</button>
 
