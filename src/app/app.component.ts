@@ -5,10 +5,11 @@ import { PostsListComponent } from "./components/posts-list/posts-list.component
 import { CardComponent } from "./components/card/card.component";
 import { NgComponentOutlet } from '@angular/common';
 import { ProfileComponent } from "./components/profile/profile.component";
+import { PipesDemoComponent } from "./components/pipes-demo/pipes-demo.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule, PostsListComponent, CardComponent, NgComponentOutlet, ProfileComponent],
+  imports: [RouterOutlet, FormsModule, PostsListComponent, CardComponent, NgComponentOutlet, ProfileComponent, PipesDemoComponent],
   template: `
     <!--
     <app-header/>
@@ -41,6 +42,7 @@ import { ProfileComponent } from "./components/profile/profile.component";
     <p><label>AppComponent User Name: </label><input type="text" [(ngModel)]="userName" /></p>
 
     <button (click)="changeUserName()">Change User Name</button>
+    <app-pipes-demo></app-pipes-demo>
 
     <router-outlet />
   `,
