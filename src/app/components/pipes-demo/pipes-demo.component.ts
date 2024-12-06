@@ -1,3 +1,4 @@
+import { PowerPipe } from './../../pipe/power.pipe';
 import { LowerCasePipe, TitleCasePipe, UpperCasePipe, DecimalPipe, PercentPipe, CurrencyPipe, DatePipe, JsonPipe, SlicePipe } from '@angular/common';
 import { Component } from '@angular/core';
 
@@ -11,7 +12,8 @@ import { Component } from '@angular/core';
     CurrencyPipe,
     DatePipe,
     JsonPipe,
-    SlicePipe],
+    SlicePipe,
+    PowerPipe],
   template: `
   <h1>UpperCasePipe</h1>
   <p>Import UpperCasePipe and add | uppercase </p>
@@ -50,6 +52,9 @@ import { Component } from '@angular/core';
   <p>{{user | json}}</p>
   <p>{{uppercaseMe | slice : 6}}</p>
   <p>{{uppercaseMe | slice : 6 | uppercase}}</p>
+  <h1>Custom power pipe</h1>
+  <p>{{2 | power : 2}}</p>
+  <p></p>
 
   `,
   styleUrl: './pipes-demo.component.css'
