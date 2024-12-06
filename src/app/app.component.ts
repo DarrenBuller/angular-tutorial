@@ -3,19 +3,21 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PostsListComponent } from "./components/posts-list/posts-list.component";
 import { CardComponent } from "./components/card/card.component";
-import { NgComponentOutlet } from '@angular/common';
+import { NgComponentOutlet, JsonPipe } from '@angular/common';
 import { ProfileComponent } from "./components/profile/profile.component";
 import { PipesDemoComponent } from "./components/pipes-demo/pipes-demo.component";
+import { UsersListComponent } from "./components/users-list/users-list.component";
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule, PostsListComponent, CardComponent, NgComponentOutlet, ProfileComponent, PipesDemoComponent],
+  imports: [RouterOutlet, JsonPipe, FormsModule, PostsListComponent, CardComponent, NgComponentOutlet, ProfileComponent, PipesDemoComponent, UsersListComponent],
   template: `
     <!--
     <app-header/>
     <app-navbar/>
     -->
-    <h1>-----{{postListTitle}}-----</h1>
+    <h1>-----{{title}}-----</h1>
     <app-posts-list (messageEvent)="receiveButtonMessage($event)" [postTitle]="postListTitle" [isLoggedIn]="appIsLoggedIn"/>
     <h2>Child message after view init: [{{message}}] [{{anotherMessage}}]</h2>
     <h2>Child message from event: {{messageFromChildEvent}}</h2>
@@ -43,6 +45,8 @@ import { PipesDemoComponent } from "./components/pipes-demo/pipes-demo.component
 
     <button (click)="changeUserName()">Change User Name</button>
     <app-pipes-demo></app-pipes-demo>
+    <app-users-list [childUser]="userName"></app-users-list>
+    <p>{{userService.users | json}}</p>
 
     <router-outlet />
   `,
@@ -58,9 +62,11 @@ export class AppComponent implements AfterViewInit {
   messageFromChildEvent: string = '';
   anotherMessage: string = '';
   userName: string = 'Fred Smith';
+  userService: any;
 
-  constructor(private viewContainer: ViewContainerRef) {
+  constructor(private viewContainer: ViewContainerRef, private userServiceDi: UserService) {
     console.log('constructor childMessage: ' + this.postList);
+    this.userService = userServiceDi;
   }
   ngAfterViewInit(): void {
     console.log(this.postList);
