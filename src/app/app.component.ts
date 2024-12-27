@@ -8,10 +8,11 @@ import { ProfileComponent } from "./components/profile/profile.component";
 import { PipesDemoComponent } from "./components/pipes-demo/pipes-demo.component";
 import { UsersListComponent } from "./components/users-list/users-list.component";
 import { UserService } from './services/user.service';
+import { FormExampleComponent } from "@components/form-example/form-example.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, JsonPipe, FormsModule, PostsListComponent, CardComponent, NgComponentOutlet, ProfileComponent, PipesDemoComponent, UsersListComponent],
+  imports: [RouterOutlet, JsonPipe, FormsModule, PostsListComponent, CardComponent, NgComponentOutlet, ProfileComponent, PipesDemoComponent, UsersListComponent, FormExampleComponent],
   template: `
     <!--
     <app-header/>
@@ -45,9 +46,11 @@ import { UserService } from './services/user.service';
 
     <button (click)="changeUserName()">Change User Name</button>
     <app-pipes-demo></app-pipes-demo>
+    <h1>------------Services Example----------------------</h1>
     <app-users-list [childUser]="userName"></app-users-list>
     <p>{{userService.users | json}}</p>
-
+    <h1>------------Form Example-------------------</h1>
+    <app-form-example></app-form-example>
     <router-outlet />
   `,
   styleUrl: './app.component.css'

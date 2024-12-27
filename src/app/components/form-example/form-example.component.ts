@@ -27,8 +27,15 @@ import { FormsModule } from '@angular/forms';
                     class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                     value=""
                     ngModel
+                    (change)="getValue(full_name)"
+                    required="true"
                   />
                 </div>
+                @if(full_name.invalid) {
+                  <div class="bg-red lg:col-span-2">Full Name INVALID</div>
+                }@else {
+                  <div class="bg-red lg:col-span-2">Full Name is OK</div>
+                }
 
                 <div class="md:col-span-5">
                   <label for="email">Email Address</label>
@@ -38,7 +45,9 @@ import { FormsModule } from '@angular/forms';
                     class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                     value=""
                     placeholder="email@domain.com"
-                    ngModel />
+                    ngModel
+                    required="true"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
                 </div>
 
                 <div class="md:col-span-5 text-right">
@@ -59,6 +68,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './form-example.component.css'
 })
 export class FormExampleComponent {
+  full_name: any;
+  getValue(fullName: any) {
+    console.log('fullName');
+  }
   formSubmit(event: any) {
     console.log('Form submitted');
     console.log(event);
